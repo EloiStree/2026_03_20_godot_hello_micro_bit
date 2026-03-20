@@ -56,6 +56,7 @@ func set_color_red_with_percent(percent:float):
 func set_color_red_with_0_to_9_float(value_0_9:float):
 	var percent  = value_0_9/ 9.0
 	set_color_red_with_percent(percent)
+ 
 
 func set_color_red_with_0_to_9_int(value_0_9:int):
 	# 0 1 2 3 4 5 6 7 8 9  Int
