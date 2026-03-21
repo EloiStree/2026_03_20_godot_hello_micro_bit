@@ -8,41 +8,63 @@ const MAX_LED_INDEX:int =24
 const MAX_LINE_INDEX:int =4
 const MAX_COLUMN_INDEX:int =4
 
-
-const IMAGE_EMPTY:String = "00000:00000:00000:00000:00000"
-const IMAGE_FULL:String = "99999:99999:99999:99999:99999"
-const IMAGE_HEART:String = "00000:09090:99999:09990:00900"
-const IMAGE_SQUARE:String = "99999:90009:90009:90009:99999"
-const IMAGE_AIM_SQUARE:String = "99999:90009:90909:90009:99999"
-const IMAGE_CROSS:String = "90009:09090:00900:09090:90009"
-
-
-
-
-
-
-
 @export var array_of_led:Array[MicroBitChangeLedColorWithSignal] 
+@export var auto_fill_if_empty :bool =true
 
 
-
+func auto_fill_array_of_led_with_children():
+	array_of_led.clear()
+	for child in get_children():
+		if child is MicroBitChangeLedColorWithSignal:
+			array_of_led.append(child)
 
 func _ready():
+	
+	if auto_fill_if_empty and array_of_led.size() ==0:
+		auto_fill_array_of_led_with_children()
+
+		
 	if array_of_led.size() != MAX_LED_COUNT:
 		push_error("array_of_led must have exactly " + str(MAX_LED_COUNT) + " elements.")
 
 
-	clear()	
-	##set_with_text(IMAGE_AIM_SQUARE)
-#
-	#append_full_column(0)
+	set_with_text(MicroBitImageGroup.IMAGE_CROSS)
+	#clear()	
+	###set_with_text(IMAGE_AIM_SQUARE)
+##
+	##append_full_column(0)
+	##await get_tree().create_timer(1.0).timeout
+	##append_full_line(0)
+	##await get_tree().create_timer(1.0).timeout
+	##for i in range(100):
+		##set_random_display()
+		##await get_tree().create_timer(0.05).timeout
 	#await get_tree().create_timer(1.0).timeout
-	#append_full_line(0)
-	#await get_tree().create_timer(1.0).timeout
-	#for i in range(100):
-		#set_random_display()
-		#await get_tree().create_timer(0.05).timeout
-	set_with_text(IMAGE_HEART)
+	clear()
+	await get_tree().create_timer(1.0).timeout
+	set_display_as_full()
+	await get_tree().create_timer(1.0).timeout
+	set_display_as_random()
+	await get_tree().create_timer(1.0).timeout
+	set_display_as_border()
+
+	MicroBitImageGroup.check_that_it_is_initialized()
+	## check all key value of MicroBitImageGroup.array_of_image
+	#for text in MicroBitImageGroup.array_of_image:
+		#set_with_text(text)
+		#await get_tree().create_timer(1.0).timeout
+	
+	# for text in MicroBitImageGroup.array_of_image:
+	# 	set_with_text(text)
+	# 	await get_tree().create_timer(1.0).timeout
+
+	# check MicroBitImageGroup.char_to_image
+
+	for keys_found in MicroBitImageGroup.char_to_image.keys():
+		var text_image = MicroBitImageGroup.get_text_image_for_char_key(keys_found)
+		set_with_text(text_image)
+		await get_tree().create_timer(1.0).timeout
+
 
 
 #region IS VALIDE
@@ -59,7 +81,6 @@ func is_valide_index_2d(line_0_4:int, column_0_4:int)->bool:
 		return false
 	return true
 #endregion	
-
 #region CONVERT
 func convert_2d_to_1d(line_0_4:int, column_0_4:int)->int:
 	return line_0_4 * MAX_COLUMN_COUNT + column_0_4
@@ -71,13 +92,16 @@ func convert_1d_to_2d(index_0_24:int)->Vector2i:
 	
 #endregion
 
+
 func clear():
 	set_all_leds_to_percent(0.0)
-
-func full():
+func set_display_as_full():
 	set_all_leds_to_percent(1.0)
 
+func set_display_as_border():
+	set_with_text(MicroBitImageGroup.IMAGE_BORDER)
 
+	
 func append_full_line(line_0_4:int):
 	if not is_valide_index_2d(line_0_4, 0):
 		return
@@ -91,7 +115,7 @@ func append_full_column(column_0_4:int):
 		set_percent_at_2d_index(line, column_0_4, 1.0)
 
 
-func set_random_display():
+func set_display_as_random():
 	for i in range(MAX_LED_COUNT):
 		var random_percent:float = randf()
 		set_percent_at_1d_index(i, random_percent)

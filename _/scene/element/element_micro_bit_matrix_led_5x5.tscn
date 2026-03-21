@@ -3,9 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cg82o7a4x3sdu" path="res://_/scene/element/element_micro_bit_change_led_color_with_signal.tscn" id="1_2gt1h"]
 [ext_resource type="Script" uid="uid://cere4osjtxhrq" path="res://_/script/micro_bit_display_matrix_5x5.gd" id="1_upb20"]
 
-[node name="NodeMatrixLed25x25" type="Node3D" unique_id=1540269188 node_paths=PackedStringArray("array_of_led")]
+[node name="NodeMatrixLed25x25" type="Node3D" unique_id=1540269188]
 script = ExtResource("1_upb20")
-array_of_led = [NodePath("MicroBitChangeLedColorWithSignal"), NodePath("MicroBitChangeLedColorWithSignal2"), NodePath("MicroBitChangeLedColorWithSignal3"), NodePath("MicroBitChangeLedColorWithSignal4"), NodePath("MicroBitChangeLedColorWithSignal5"), NodePath("MicroBitChangeLedColorWithSignal6"), NodePath("MicroBitChangeLedColorWithSignal7"), NodePath("MicroBitChangeLedColorWithSignal8"), NodePath("MicroBitChangeLedColorWithSignal9"), NodePath("MicroBitChangeLedColorWithSignal10"), NodePath("MicroBitChangeLedColorWithSignal11"), NodePath("MicroBitChangeLedColorWithSignal12"), NodePath("MicroBitChangeLedColorWithSignal13"), NodePath("MicroBitChangeLedColorWithSignal14"), NodePath("MicroBitChangeLedColorWithSignal15"), NodePath("MicroBitChangeLedColorWithSignal16"), NodePath("MicroBitChangeLedColorWithSignal17"), NodePath("MicroBitChangeLedColorWithSignal18"), NodePath("MicroBitChangeLedColorWithSignal19"), NodePath("MicroBitChangeLedColorWithSignal20"), NodePath("MicroBitChangeLedColorWithSignal21"), NodePath("MicroBitChangeLedColorWithSignal22"), NodePath("MicroBitChangeLedColorWithSignal23"), NodePath("MicroBitChangeLedColorWithSignal24"), NodePath("MicroBitChangeLedColorWithSignal25")]
 metadata/_custom_type_script = "uid://cere4osjtxhrq"
 
 [node name="MicroBitChangeLedColorWithSignal" parent="." unique_id=1178328725 instance=ExtResource("1_2gt1h")]

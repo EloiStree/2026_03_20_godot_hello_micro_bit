@@ -15,22 +15,22 @@ signal on_color_led_changed(new_color:Color)
 ##For the demo, I will remove it.
 #var time_elapsed: float = 0.0
 
-func _ready() -> void:
-	#print("Hello Cube ;)")
-	# set_cube_color(color_at_ready)
-	#set_random_color()
-	pass
+#func _ready() -> void:
+	##print("Hello Cube ;)")
+	## set_cube_color(color_at_ready)
+	##set_random_color()
+	#pass
 
-func _process(delta: float) -> void:
-	##for the fun
-	#set_random_color()
-	 #Ctrl + K
-	#time_elapsed+= delta
-	#var time_divided_by =time_elapsed / 3.0 ##   10 / 3  3.3333
-	#var time_multiply_by_100 =time_divided_by*100.0  ## 333.33333
-	#var percent = (int(time_multiply_by_100) % 100) /100.0 ### 33.333  0.33333
-	#set_color_red_with_percent(percent)
-	pass
+#func _process(delta: float) -> void:
+	###for the fun
+	##set_random_color()
+	 ##Ctrl + K
+	##time_elapsed+= delta
+	##var time_divided_by =time_elapsed / 3.0 ##   10 / 3  3.3333
+	##var time_multiply_by_100 =time_divided_by*100.0  ## 333.33333
+	##var percent = (int(time_multiply_by_100) % 100) /100.0 ### 33.333  0.33333
+	##set_color_red_with_percent(percent)
+	#pass
 	
 
 func turn_on():
@@ -80,9 +80,9 @@ func set_color_red_with_0_to_9_char(text_with_a_0_9:String):
 	# For each of the char in the text you give me
 	# I check if you give me a 0 or a 9
 	# continue = I skill this loop in the for
-	for char in text_with_a_0_9:
+	for character in text_with_a_0_9:
 		var int_value :int=-1
-		match char:
+		match character:
 			'0':
 				int_value=0
 			'1':
