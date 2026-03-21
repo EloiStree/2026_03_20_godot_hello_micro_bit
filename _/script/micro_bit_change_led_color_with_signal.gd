@@ -9,30 +9,22 @@ extends Node3D
 ## Signal to every body that the script ask to change of color.
 signal on_color_led_changed(new_color:Color)
 
-#@export var to_affect: MeshInstance3D = null
-@export var color_at_ready:Color = Color(0,0,0,0)
+@export_range(0.0,1.0,0.001)
+var last_received_state_as_percent_0_1 :float =0.0
 
-##For the demo, I will remove it.
-#var time_elapsed: float = 0.0
+@export var emit_state_at_start :bool =true
 
-#func _ready() -> void:
-	##print("Hello Cube ;)")
-	## set_cube_color(color_at_ready)
-	##set_random_color()
-	#pass
+func _ready():
+	if emit_state_at_start:
+		set_color_red_with_percent(last_received_state_as_percent_0_1)
 
-#func _process(delta: float) -> void:
-	###for the fun
-	##set_random_color()
-	 ##Ctrl + K
-	##time_elapsed+= delta
-	##var time_divided_by =time_elapsed / 3.0 ##   10 / 3  3.3333
-	##var time_multiply_by_100 =time_divided_by*100.0  ## 333.33333
-	##var percent = (int(time_multiply_by_100) % 100) /100.0 ### 33.333  0.33333
-	##set_color_red_with_percent(percent)
-	#pass
+func get_led_state_as_percent_0_to_1()->float:
+	return last_received_state_as_percent_0_1
+func get_led_state_as_0_to_9_int()->int:
+	return int(get_led_state_as_percent_0_to_1()*9.0)
+func get_led_state_as_0_to_9_char()->String:
+	return str(get_led_state_as_0_to_9_int())
 	
-
 func turn_on():
 	set_color_red_with_percent(1)
 	
@@ -58,6 +50,7 @@ func set_cube_color(color:Color):
 	
 	# Notify to every listener that the color need to be changed.
 	# We dont care how, we juste share the request to change color
+	last_received_state_as_percent_0_1 = color.r
 	on_color_led_changed.emit(color)
 	
 func set_color_red_with_percent(percent:float):

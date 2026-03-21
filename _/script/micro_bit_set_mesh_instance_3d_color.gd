@@ -9,7 +9,7 @@ func _ready() -> void:
 		return
 	
 	if duplicate_material_at_ready:
-		var mat = to_affect.get_active_material(0)
+		var mat:Material = to_affect.get_active_material(0)
 		if mat:
 			var new_mat = mat.duplicate()
 			to_affect.set_surface_override_material(0, new_mat)

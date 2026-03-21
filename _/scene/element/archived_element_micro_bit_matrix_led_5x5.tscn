@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://1h5kcsx6f4b0"]
 
 [ext_resource type="PackedScene" uid="uid://cg82o7a4x3sdu" path="res://_/scene/element/element_micro_bit_change_led_color_with_signal.tscn" id="1_2gt1h"]
-[ext_resource type="Script" uid="uid://cere4osjtxhrq" path="res://_/script/micro_bit_display_matrix_5x5.gd" id="1_upb20"]
+[ext_resource type="Script" uid="uid://cere4osjtxhrq" path="res://_/script/archived_micro_bit_display_matrix_5x5.gd" id="1_upb20"]
 
 [node name="NodeMatrixLed25x25" type="Node3D" unique_id=1540269188]
 script = ExtResource("1_upb20")
