@@ -32,7 +32,18 @@ func _process(delta: float) -> void:
 	#set_color_red_with_percent(percent)
 	pass
 	
+
+func turn_on():
+	set_color_red_with_percent(1)
 	
+func turn_off():
+	set_color_red_with_percent(0)	
+	
+func turn_on_off(value:bool):
+	if value:
+		turn_on()
+	else :
+		turn_off()
 	
 func set_random_color():
 	var random_color = Color(0,0,0,1) # That is a local variable

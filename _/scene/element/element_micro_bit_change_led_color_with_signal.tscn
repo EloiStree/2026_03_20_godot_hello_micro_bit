@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://de6p7khx2d4gp"]
+[gd_scene format=3 uid="uid://cg82o7a4x3sdu"]
 
 [ext_resource type="Script" uid="uid://b3eu85xihlsbn" path="res://_/script/micro_bit_change_led_color_with_signal.gd" id="1_ckwnb"]
 [ext_resource type="Script" uid="uid://bn0xpqw64bgly" path="res://_/script/micro_bit_set_mesh_instance_3d_color.gd" id="2_6f4vy"]
