@@ -49,10 +49,45 @@ func _remove_null_in_array_and_check():
 		if in_zone_nodes[i]==null:
 			in_zone_nodes.remove_at(i)
 	check_if_active()
+	
+
+@export_group("Use filtering ")
+@export var use_layer_filter: bool = false
+@export_flags_3d_physics var layer_mask_filter: int = 0xFFFFFFFF
+@export var use_group_filter: bool = false
+@export var allow_group_to_interact: String = "interactable_group"
+@export var use_script_tag_interactive_source:bool=true
+
 
 func _is_valid_target(body:Node3D):
-	# TODO later
+	# you can still allow collision and check with your code
+	#
+	if use_layer_filter:
+		if not (body.collision_layer & layer_mask_filter):
+			return false
+
+	if use_group_filter:
+		if not body.is_in_group(allow_group_to_interact):
+			return false
+
+			
+	if use_script_tag_interactive_source:
+		var has_children:Node= find_microbit_interactive_source(body)
+		if has_children==null:
+			return false	
 	return true
+
+func find_microbit_interactive_source(node: Node) -> Node:
+	if node is MicroBitInteractiveSource:
+		return node
+
+	for child in node.get_children():
+		var result = find_microbit_interactive_source(child)
+		if result:
+			return result
+
+	return null
+
 
 func _on_area_entered(area: Area3D) -> void:
 	if not _is_valid_target(area):

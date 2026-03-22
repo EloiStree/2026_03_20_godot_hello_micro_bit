@@ -1,26 +1,11 @@
 [gd_scene format=3 uid="uid://jvavmcuiuoog"]
 
-[ext_resource type="Script" uid="uid://2qjtvy7chvw5" path="res://_/script/micro_bit_tactile_button.gd" id="1_i0hnh"]
-[ext_resource type="Script" uid="uid://cpq625pgxe80t" path="res://_/script/micro_bit_tactile_button_script_animation.gd" id="2_m4yag"]
-[ext_resource type="Script" uid="uid://bngqy4ohjx8b8" path="res://_/script/micro_bit_collidable_area3d.gd" id="3_i0hnh"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_5xryl"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66oti"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyvj0"]
-albedo_color = Color(0.4506483, 0.4506483, 0.45064825, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_wdwhb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_faa6o"]
-albedo_color = Color(0.2159017, 0.21590173, 0.2159017, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3w8vi"]
-size = Vector3(1, 0.4790039, 1)
+[ext_resource type="PackedScene" uid="uid://mk87fwj3xx7h" path="res://_/scene/element/element_micro_bit_tactile_button_touchable.tscn" id="1_3gj6j"]
+[ext_resource type="Script" uid="uid://b4fchevv1qfve" path="res://_/scene/demo/micro_bit_interactive_source.gd" id="1_aohy7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m4yag"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3gj6j"]
 
 [node name="DemoMicroBitTactileButtonInteractable" type="Node3D" unique_id=1597294364]
 
@@ -30,60 +15,26 @@ transform = Transform3D(1, 0, 0, 0, 0.94588166, 0.3245118, 0, -0.3245118, 0.9458
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1489312135]
 transform = Transform3D(1, 0, 0, 0, 0.81919205, 0.57351923, 0, -0.57351923, 0.81919205, 0, 0, 0)
 
-[node name="MicroBitTactileButtonTouchable" type="Node3D" parent="." unique_id=422241058]
-script = ExtResource("1_i0hnh")
+[node name="Area3D" type="Area3D" parent="." unique_id=1796066033 groups=["interactable_group", "interactable_source"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5940242, 0.32461643, 0)
+collision_layer = 1793
+collision_mask = 0
 
-[node name="NodeScriptAnimation" type="Node" parent="MicroBitTactileButtonTouchable" unique_id=826314448 node_paths=PackedStringArray("to_move", "where_when_pressed", "where_when_released")]
-script = ExtResource("2_m4yag")
-to_move = NodePath("../StaticMovingPartRoot/StaticMovingPart")
-where_when_pressed = NodePath("../StaticMovingPartRoot/Node3DWhenPressing")
-where_when_released = NodePath("../StaticMovingPartRoot/Node3DWhenReleasing")
-
-[node name="StaticPart" type="Node3D" parent="MicroBitTactileButtonTouchable" unique_id=388458076]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MicroBitTactileButtonTouchable/StaticPart" unique_id=2026954184]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.25, 0)
-mesh = SubResource("BoxMesh_5xryl")
-surface_material_override/0 = SubResource("StandardMaterial3D_66oti")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="MicroBitTactileButtonTouchable/StaticPart" unique_id=2075764768]
-transform = Transform3D(1.002, 0, 0, 0, 0.061, 0, 0, 0, 1.002, 0, 0.4732576, 0)
-mesh = SubResource("BoxMesh_5xryl")
-surface_material_override/0 = SubResource("StandardMaterial3D_kyvj0")
-
-[node name="StaticMovingPartRoot" type="Node3D" parent="MicroBitTactileButtonTouchable" unique_id=1044300752]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5015203, 0)
-
-[node name="StaticMovingPart" type="Node3D" parent="MicroBitTactileButtonTouchable/StaticMovingPartRoot" unique_id=145067430]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15130138, 0)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MicroBitTactileButtonTouchable/StaticMovingPartRoot/StaticMovingPart" unique_id=618576149]
-transform = Transform3D(0.81276286, 0, 0, 0, 0.15297979, 0, 0, 0, 0.7958324, 0, -0.13627785, 0)
-mesh = SubResource("CylinderMesh_wdwhb")
-surface_material_override/0 = SubResource("StandardMaterial3D_faa6o")
-
-[node name="Node3DWhenPressing" type="Node3D" parent="MicroBitTactileButtonTouchable/StaticMovingPartRoot" unique_id=1819610189]
-
-[node name="Node3DWhenReleasing" type="Node3D" parent="MicroBitTactileButtonTouchable/StaticMovingPartRoot" unique_id=69712431]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1745305, 0)
-
-[node name="MicroBitAreaCollidableArea3D" type="Area3D" parent="MicroBitTactileButtonTouchable" unique_id=1476049351]
-visible = false
-script = ExtResource("3_i0hnh")
-metadata/_custom_type_script = "uid://bngqy4ohjx8b8"
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="MicroBitTactileButtonTouchable/MicroBitAreaCollidableArea3D" unique_id=1565566735]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26049805, 0)
-shape = SubResource("BoxShape3D_3w8vi")
-
-[node name="Area3D" type="Area3D" parent="." unique_id=1796066033]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.828043, 0, 0)
+[node name="MicroBitInteractiveSource" type="Node" parent="Area3D" unique_id=830683386]
+script = ExtResource("1_aohy7")
+metadata/_custom_type_script = "uid://b4fchevv1qfve"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=164272043]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4093981, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10087943, 0, 0)
 shape = SubResource("BoxShape3D_m4yag")
 
-[connection signal="on_down" from="MicroBitTactileButtonTouchable" to="MicroBitTactileButtonTouchable/NodeScriptAnimation" method="set_as_pressing"]
-[connection signal="on_up" from="MicroBitTactileButtonTouchable" to="MicroBitTactileButtonTouchable/NodeScriptAnimation" method="set_as_released"]
-[connection signal="on_down" from="MicroBitTactileButtonTouchable/MicroBitAreaCollidableArea3D" to="MicroBitTactileButtonTouchable" method="set_as_pressing"]
-[connection signal="on_up" from="MicroBitTactileButtonTouchable/MicroBitAreaCollidableArea3D" to="MicroBitTactileButtonTouchable" method="set_as_released"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=44072575]
+layers = 1281
+mesh = SubResource("BoxMesh_3gj6j")
+
+[node name="MicroBitTactileButtonTouchable" parent="." unique_id=422241058 instance=ExtResource("1_3gj6j")]
+
+[node name="MicroBitAreaCollidableArea3D" parent="MicroBitTactileButtonTouchable" index="4" unique_id=1476049351]
+layer_mask_filter = 4294962688
+
+[editable path="MicroBitTactileButtonTouchable"]
