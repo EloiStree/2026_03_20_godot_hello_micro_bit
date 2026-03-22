@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 	if was_pressed():
 		print("Hey that was pressed once")
 
+
 func _on_frame_end_start():
 	#TODO: TEST THAT IT WORKS
 	if was_pressed_on_last_framed_delayed==true:
