@@ -1,3 +1,4 @@
+class_name MicroBitSetMeshInstanceColor3D
 extends Node
 
 @export var to_affect: MeshInstance3D = null
