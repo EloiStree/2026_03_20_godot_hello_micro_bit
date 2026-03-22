@@ -67,7 +67,7 @@ func _ready() -> void:
 		timer.autostart = true
 		timer.timeout.connect(refresh_debug_arrray_state)
 		add_child(timer)
-	testing_around()
+	#testing_around()
 
 # We will remove it later. At least comment it.
 func testing_around():

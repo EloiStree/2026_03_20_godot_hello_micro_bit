@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://twxqaagw0qu2"]
+
+[ext_resource type="PackedScene" uid="uid://fexrpchd24fg" path="res://_/scene/element/micro_bit_as_quad_image_1x1x1.tscn" id="1_phth7"]
+[ext_resource type="PackedScene" uid="uid://mk87fwj3xx7h" path="res://_/scene/element/element_micro_bit_tactile_button_touchable.tscn" id="2_twatn"]
+[ext_resource type="PackedScene" uid="uid://skeqkgsk85j8" path="res://_/scene/element/element_array_matrix_leds_5x5.tscn" id="3_tpux2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_585vc"]
+
+[node name="MicroBitWithCodeQuadFacade" type="Node3D" unique_id=1913523682]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1809260976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.01, 0, 0.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_585vc")
+
+[node name="MicroBitAsQuadImage1x1x1" parent="." unique_id=1127973766 instance=ExtResource("1_phth7")]
+
+[node name="MicroBitTactileButtonTouchableA" parent="." unique_id=422241058 instance=ExtResource("2_twatn")]
+transform = Transform3D(0.111, 0, 0, 0, -4.851964e-09, -0.111, 0, 0.111, -4.851964e-09, -0.3899969, 0.4055544, 0.001)
+
+[node name="MicroBitTactileButtonTouchableB" parent="." unique_id=247432886 instance=ExtResource("2_twatn")]
+transform = Transform3D(0.111, 0, 0, 0, -4.851964e-09, -0.111, 0, 0.111, -4.851964e-09, 0.4018606, 0.4055544, 0.001)
+
+[node name="MicroBitTactileButtonTouchableReset" parent="." unique_id=1295743184 instance=ExtResource("2_twatn")]
+transform = Transform3D(0.110999994, 0, 0, 0, -4.8519646e-09, 0.110999994, 0, -0.110999994, -4.8519646e-09, -0.188, 0.739, -0.001)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=663194089]
+transform = Transform3D(1, 0, 0, 0, 0.8518824, 0.52373314, 0, -0.52373314, 0.8518824, 0, 1.4886788, 1.8383765)
+
+[node name="ArrayMatrixLeds5x5" parent="." unique_id=264011407 instance=ExtResource("3_tpux2")]
+transform = Transform3D(0.04, 0, 0, 0, -1.7484555e-09, -0.04, 0, 0.04, -1.7484555e-09, -0.15664157, 0.54585475, 3.6853416e-11)
+
+[node name="MicroBitChangeLedColorWithSignal0" parent="ArrayMatrixLeds5x5" index="0" unique_id=1178328725]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal1" parent="ArrayMatrixLeds5x5" index="1" unique_id=2067872458]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal2" parent="ArrayMatrixLeds5x5" index="2" unique_id=1685145665]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal3" parent="ArrayMatrixLeds5x5" index="3" unique_id=1053728905]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal4" parent="ArrayMatrixLeds5x5" index="4" unique_id=1229314278]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal5" parent="ArrayMatrixLeds5x5" index="5" unique_id=1140805726]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal6" parent="ArrayMatrixLeds5x5" index="6" unique_id=1601200306]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal7" parent="ArrayMatrixLeds5x5" index="7" unique_id=456733917]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal8" parent="ArrayMatrixLeds5x5" index="8" unique_id=299746147]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal9" parent="ArrayMatrixLeds5x5" index="9" unique_id=49642877]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal10" parent="ArrayMatrixLeds5x5" index="10" unique_id=494722967]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal11" parent="ArrayMatrixLeds5x5" index="11" unique_id=954347130]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal12" parent="ArrayMatrixLeds5x5" index="12" unique_id=658478585]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal13" parent="ArrayMatrixLeds5x5" index="13" unique_id=1052252400]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal14" parent="ArrayMatrixLeds5x5" index="14" unique_id=2129399830]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal15" parent="ArrayMatrixLeds5x5" index="15" unique_id=2073204555]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal16" parent="ArrayMatrixLeds5x5" index="16" unique_id=994947806]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal17" parent="ArrayMatrixLeds5x5" index="17" unique_id=919020732]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal18" parent="ArrayMatrixLeds5x5" index="18" unique_id=35497086]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal19" parent="ArrayMatrixLeds5x5" index="19" unique_id=136014421]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal20" parent="ArrayMatrixLeds5x5" index="20" unique_id=1728651326]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal21" parent="ArrayMatrixLeds5x5" index="21" unique_id=1906945690]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal22" parent="ArrayMatrixLeds5x5" index="22" unique_id=194829584]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal23" parent="ArrayMatrixLeds5x5" index="23" unique_id=1223467047]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal24" parent="ArrayMatrixLeds5x5" index="24" unique_id=2071858286]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[connection signal="on_down" from="MicroBitTactileButtonTouchableA" to="ArrayMatrixLeds5x5" method="display_turn_all_leds_on"]
+[connection signal="on_down" from="MicroBitTactileButtonTouchableB" to="ArrayMatrixLeds5x5" method="display_set_all_leds_as_random"]
+
+[editable path="ArrayMatrixLeds5x5"]
