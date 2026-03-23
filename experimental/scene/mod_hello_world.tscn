@@ -33,7 +33,6 @@ func _ready()-> void:
 func _process(delta: float) -> void:
 	_process_micro_bit(delta)"
 editable = false
-delimiter_strings = Array[String](["\" \"", "' '"])
 
 [node name="CodeEditUser" type="CodeEdit" parent="." unique_id=1698043918]
 layout_mode = 1
@@ -76,6 +75,7 @@ text = "Run"
 script = ExtResource("1_ojjh8")
 developer_code = NodePath("../CodeEditDev")
 user_code = NodePath("../CodeEditUser")
+push_at_ready = false
 
 [node name="NodHelloWorld" type="Node" parent="." unique_id=403923243]
 script = ExtResource("2_mq3qa")
