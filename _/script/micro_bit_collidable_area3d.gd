@@ -4,6 +4,14 @@ extends Area3D
 @export var is_active:bool=false
 @export var in_zone_nodes:Array[Node3D]
 
+@export var clean_for_null_interval_in_seconds:float=0.1
+@export_group("Use filtering ")
+@export var use_layer_filter: bool = false
+@export_flags_3d_physics var layer_mask_filter: int = 0xFFFFFFFF
+@export var use_group_filter: bool = false
+@export var allow_group_to_interact: String = "interactable_group"
+@export var use_script_tag_interactive_source:bool=true
+
 signal on_active_state_changed(is_active:bool)
 signal on_down()
 signal on_up()
@@ -33,7 +41,6 @@ func _set_as_active(value_on:bool):
 	
 	
 	
-@export var clean_for_null_interval_in_seconds:float=0.1
 func _ready():
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
@@ -50,13 +57,6 @@ func _remove_null_in_array_and_check():
 			in_zone_nodes.remove_at(i)
 	check_if_active()
 	
-
-@export_group("Use filtering ")
-@export var use_layer_filter: bool = false
-@export_flags_3d_physics var layer_mask_filter: int = 0xFFFFFFFF
-@export var use_group_filter: bool = false
-@export var allow_group_to_interact: String = "interactable_group"
-@export var use_script_tag_interactive_source:bool=true
 
 
 func _is_valid_target(body:Node3D):

@@ -60,6 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1745305, 0)
 
 [node name="Area3DTactileButton" type="Area3D" parent="." unique_id=835442402]
 script = ExtResource("3_bydkj")
+use_print_debug = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DTactileButton" unique_id=51557800]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26049805, 0)
