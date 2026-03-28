@@ -1,6 +1,10 @@
 class_name MicroBitDevUserCodeToRunningNode
 extends Node
 
+signal on_new_node_created(node:Node)
+signal on_before_old_node_destroyed(node:Node)
+signal on_after_old_node_destroyed(node:Node)
+
 
 @export var script_name_generated_to_be_loaded :String ="dev_user_code.gd"
 
@@ -30,7 +34,10 @@ func print_current_code_loaded():
 func try_execute_code():
 	
 	if created_node_with_script !=null:
+		var old_node = created_node_with_script
+		on_before_old_node_destroyed.emit(old_node)
 		created_node_with_script.queue_free()
+		on_after_old_node_destroyed.emit(old_node)
 		created_node_with_script =null
 	
 	
@@ -63,6 +70,7 @@ func try_execute_code():
 	
 	# Ready is called here. when added
 	add_child(node_to_run_in_scene)
+	on_new_node_created.emit(node_to_run_in_scene)
 	# Same for _process
 	
 	
