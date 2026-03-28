@@ -1,0 +1,75 @@
+
+const ARRAY_MAX_SIZE :int = 25
+const ARRAY_LINE_SIZE :int = 5
+const ARRAY_COLUMN_SIZE :int = 5
+const PIN_COUNT :int = 20
+
+#### var are set by developer with:
+# if node.has_property(property_name):
+#     node.set(property_name, value)
+
+@export var button_a :bool =false
+@export var button_b :bool =false
+@export var button_reset :bool =false
+@export var pin_0 :bool =false
+@export var pin_1 :bool =false
+@export var pin_2 :bool =false
+@export var state_of_leds :Array[float] =false
+@export var tilt_x_pitch :float = 0.0
+@export var tilt_z_roll :float = 0.0
+@export var accelerometer_y :float = 0.0
+@export var accelerometer_x :float = 0.0
+@export var accelerometer_z :float = 0.0
+@export var is_pin_active : Array[bool] =false
+@export var is_pin_in_write_mode : Array[bool] =false
+@export var light_level_0_255 :int = 0.0
+@export var microphone_level_0_255 :int = 0.0
+@export var temperature_50 :float = 0.0
+@export var compass_0_360 :float = 0.0
+@export var compass_field_x_2000000 :int = 0.0
+@export var compass_field_y_2000000 :int = 0.0
+@export var compass_field_z_2000000 :int = 0.0
+@export var compass_field_z_2000000 :int = 0.0
+## See https://python.microbit.org/v/3/api/microbit.audio
+@export var is_playing_sound :bool = false
+
+## See https://python.microbit.org/v/3/api/time
+@export var ticks_micro_seocnds_since_start :int = 0.0
+
+
+## See Radio https://python.microbit.org/v/3/reference/radio
+signal on_user_send_radio_message(group:int, message:String)
+func mod_out_send_radio_message(message:String):
+	on_user_send_radio_message.emit(0,message)
+
+## See Display https://python.microbit.org/v/3/api/microbit.display
+signal on_user_clear()
+signal on_user_display_show(message:String)
+signal on_user_display_show_image(message_as_image:String)
+signal on_user_display_scroll(message:String)
+signal on_user_display_set_pixel(x_left_right:int, y_top_down:int, percent_0_1:float)
+
+## See Audio https://python.microbit.org/v/3/api/microbit.audio
+signal on_user_request_audio_play_build_in_sound(sound_name:String)
+
+## Not in the lib of Micro Bit but fun. Play the sound once unstoppable
+signal on_user_play_sound_godot_local_hook(sound_name:String)
+signal on_user_play_sound_godot_local_spawn(sound_name:String)
+signal on_user_play_sound_godot_local_global(sound_name:String)
+
+
+func _process(delta:float)-> void:
+	tilt_z_roll = (y / 1024.0) * 90  
+	tilt_x_pitch = (x / 1024.0) * 90 
+
+func mod_in_button_a_changed_state(set_as_pressing:bool):
+	pass
+func mod_in_button_b_changed_state(set_as_pressing:bool):
+	pass
+func mod_in_pin_changed_state(index_0_20:int, set_as_active:bool):
+	pass
+
+# -------------------- DEV/USER -------------------- #
+
+func mod_in_received_radio_message(group:int, message:String):
+	pass

@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cw83e37lp6wc"]
+
+[ext_resource type="Script" uid="uid://cdur1v35yt5vs" path="res://_/script/micro_bit_user_and_developer_code_drom_code_edit.gd" id="1_l75to"]
+[ext_resource type="Script" uid="uid://30bh0betlq5i" path="res://_/script/micro_bit_dev_user_code_to_running_node.gd" id="2_ik5qv"]
+
+[node name="DemoMicroBitLoadRunningScriptAsNode" type="Control" unique_id=867692435]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlDevUserCode" type="Control" parent="." unique_id=842759537]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -2.0
+
+[node name="CodeEditDeveloper" type="CodeEdit" parent="ControlDevUserCode" unique_id=1999305177]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.33600003
+offset_right = -4.0
+offset_bottom = -0.056015015
+text = "## DEVELOPER CODE
+
+extends Node
+
+func say_hello()->void:
+	print(\"Hello World\")
+func _ready()->void:
+	_user_ready()
+
+func _process(delta:float)->void:
+	_user_process(delta)
+
+"
+editable = false
+
+[node name="CodeEditUser" type="CodeEdit" parent="ControlDevUserCode" unique_id=1969345377]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.365
+anchor_right = 1.0
+anchor_bottom = 1.0220001
+offset_left = 7.0
+offset_top = -14.790009
+offset_right = -4.0
+offset_bottom = -1.2120361
+text = "## USER CODE
+func _user_ready()->void:
+	say_hello()
+	print(\"Hey o\")
+func _user_process(delta:float)->void :
+	print(\"Delta:\", delta)
+
+"
+delimiter_strings = Array[String](["\" \"", "' '"])
+
+[node name="Button" type="Button" parent="ControlDevUserCode" unique_id=1329089710]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.84300005
+anchor_top = 0.8880001
+anchor_right = 1.0
+anchor_bottom = 0.99500006
+offset_left = 8.549927
+offset_top = 4.3519287
+offset_right = -8.0
+offset_bottom = 0.22998047
+text = "RUN"
+
+[node name="NodeExecuteWhenRun" type="Node" parent="ControlDevUserCode" unique_id=605108997 node_paths=PackedStringArray("developer_code", "user_code")]
+script = ExtResource("1_l75to")
+developer_code = NodePath("../CodeEditDeveloper")
+user_code = NodePath("../CodeEditUser")
+push_at_ready = false
+
+[node name="NodeDevUserCodeToNode" type="Node" parent="ControlDevUserCode" unique_id=1413392743]
+script = ExtResource("2_ik5qv")
+
+[connection signal="button_down" from="ControlDevUserCode/Button" to="ControlDevUserCode/NodeExecuteWhenRun" method="push_code_in_code_edit"]
+[connection signal="button_down" from="ControlDevUserCode/Button" to="ControlDevUserCode/NodeDevUserCodeToNode" method="try_execute_code"]
+[connection signal="on_push_developer_user_code" from="ControlDevUserCode/NodeExecuteWhenRun" to="ControlDevUserCode/NodeDevUserCodeToNode" method="set_developer_and_user_code"]
+[connection signal="on_pushed_both_code" from="ControlDevUserCode/NodeExecuteWhenRun" to="ControlDevUserCode/NodeDevUserCodeToNode" method="print_current_code_loaded"]
