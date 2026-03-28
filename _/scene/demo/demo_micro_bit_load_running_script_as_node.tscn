@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://cw83e37lp6wc"]
 
-[ext_resource type="Script" uid="uid://cdur1v35yt5vs" path="res://_/script/micro_bit_user_and_developer_code_drom_code_edit.gd" id="1_l75to"]
-[ext_resource type="Script" uid="uid://30bh0betlq5i" path="res://_/script/micro_bit_dev_user_code_to_running_node.gd" id="2_ik5qv"]
-[ext_resource type="Script" uid="uid://bijupk3vid03s" path="res://_/script/micro_bit_turn_existing_script_to_text_emit.gd" id="3_3byqi"]
+[ext_resource type="Script" uid="uid://xo4osry84raa" path="res://_/script/micro_bit_code_editor_to_moddable_node.gd" id="1_ik5qv"]
+[ext_resource type="Script" uid="uid://bjx4u2se4vs2n" path="res://_/script/micro_bit_default_code_in_micro_bit_editor.gd" id="2_mj7hm"]
 [ext_resource type="PackedScene" uid="uid://twxqaagw0qu2" path="res://_/scene/core/micro_bit_with_code_quad_facade.tscn" id="3_mj7hm"]
-[ext_resource type="Script" uid="uid://cmbktwx4d1sor" path="res://_/script/micro_bit_mod_developer_code.gd" id="4_33wwt"]
-[ext_resource type="Script" uid="uid://vla7gjpdr1u8" path="res://_/script/micro_bit_modding_interface_to_node.gd" id="5_wdncj"]
 
 [node name="DemoMicroBitLoadRunningScriptAsNode" type="Control" unique_id=867692435]
 layout_mode = 3
@@ -25,122 +22,42 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CodeEditDeveloper" type="CodeEdit" parent="ControlDevUserCode" unique_id=1999305177]
+[node name="CodeEdit" type="CodeEdit" parent="ControlDevUserCode" unique_id=1085005879]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.33600003
-offset_right = -4.0
-offset_bottom = -0.056015015
-text = "extends Node
-func say_hello()->void:
-	print(\"Hello World\")
+anchor_right = 0.98800004
+anchor_bottom = 1.0
+offset_right = -0.20007324
+offset_bottom = -5.0
+text = "# Here we are going to add some code.
+extends Node
 func _ready()->void:
-	_user_ready()
+	print(\"Hello Mod\")"
 
-func _process(delta:float)->void:
-	_user_process(delta)
+[node name="MicroBitCodeEditorToModdableNode" type="Node" parent="ControlDevUserCode" unique_id=111486366 node_paths=PackedStringArray("code_editor_to_read_from")]
+script = ExtResource("1_ik5qv")
+code_editor_to_read_from = NodePath("../CodeEdit")
+code_to_load_at_ready = ExtResource("2_mj7hm")
+metadata/_custom_type_script = "uid://xo4osry84raa"
 
-"
-editable = false
-
-[node name="CodeEditUser" type="CodeEdit" parent="ControlDevUserCode" unique_id=1969345377]
+[node name="Button" type="Button" parent="ControlDevUserCode" unique_id=1811422029]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.365
+anchor_left = 0.777
+anchor_top = 0.933
 anchor_right = 1.0
-anchor_bottom = 1.0220001
-offset_left = 7.0
-offset_top = -14.790009
-offset_right = -4.0
-offset_bottom = -1.2120361
-text = "func notify_button_a_changed(value_is_pressing:bool)->void :
-	print(\"PRESS A:\", str(value_is_pressing))
-	
-func notify_button_b_changed(value_is_pressing:bool)->void :
-	print(\"PRESS B:\", str(value_is_pressing))
-
-"
-
-[node name="Button" type="Button" parent="ControlDevUserCode" unique_id=1329089710]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.84300005
-anchor_top = 0.8880001
-anchor_right = 1.0
-anchor_bottom = 0.99500006
-offset_left = 8.549927
-offset_top = 4.3519287
-offset_right = -8.0
-offset_bottom = 0.22998047
-text = "RUN"
-
-[node name="NodeExecuteWhenRun" type="Node" parent="ControlDevUserCode" unique_id=605108997 node_paths=PackedStringArray("developer_code", "user_code")]
-script = ExtResource("1_l75to")
-developer_code = NodePath("../CodeEditDeveloper")
-user_code = NodePath("../CodeEditUser")
-push_at_ready = false
-
-[node name="NodeDevUserCodeToNode" type="Node" parent="ControlDevUserCode" unique_id=1413392743]
-script = ExtResource("2_ik5qv")
-
-[node name="MicroBitTurnExistingScriptToTextEmit" type="Node" parent="ControlDevUserCode" unique_id=645295624]
-script = ExtResource("3_3byqi")
-source_to_emit = ExtResource("4_33wwt")
-emit_at_ready = true
-metadata/_custom_type_script = "uid://bijupk3vid03s"
-
-[node name="InterfaceToModNode" type="Node" parent="ControlDevUserCode" unique_id=987203250]
-script = ExtResource("5_wdncj")
-
-[node name="CheckButtonA" type="CheckButton" parent="ControlDevUserCode" unique_id=1982499247]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.82500005
-anchor_right = 0.9710001
-anchor_bottom = 0.085
-offset_left = 0.24993896
-offset_right = 0.34985352
-offset_bottom = 0.09000015
-text = "A"
-
-[node name="CheckButtonB" type="CheckButton" parent="ControlDevUserCode" unique_id=1591462925]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.82500005
-anchor_top = 0.096
-anchor_right = 0.96500003
-anchor_bottom = 0.201
-offset_left = 0.24993896
-offset_top = -0.01599884
-offset_right = 0.25
-offset_bottom = 0.1539917
-text = "B"
-
-[node name="Button2" type="Button" parent="ControlDevUserCode" unique_id=417016304]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.83000004
-anchor_top = 0.186
-anchor_right = 0.97300005
-anchor_bottom = 0.289
-offset_left = 0.49993896
-offset_top = -0.15600586
-offset_right = 0.049926758
-offset_bottom = 0.30599976
-text = "Random LED 5x5"
+anchor_bottom = 1.0
+offset_left = -0.5499878
+offset_top = -6.7180176
+offset_right = -6.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reload Script"
 
 [node name="MicroBitWithCodeQuadFacade" parent="." unique_id=1913523682 instance=ExtResource("3_mj7hm")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1206520464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6059599)
 
-[connection signal="button_down" from="ControlDevUserCode/Button" to="ControlDevUserCode/NodeExecuteWhenRun" method="push_code_in_code_edit"]
-[connection signal="button_down" from="ControlDevUserCode/Button" to="ControlDevUserCode/NodeDevUserCodeToNode" method="try_execute_code"]
-[connection signal="on_push_developer_user_code" from="ControlDevUserCode/NodeExecuteWhenRun" to="ControlDevUserCode/NodeDevUserCodeToNode" method="set_developer_and_user_code"]
-[connection signal="on_pushed_both_code" from="ControlDevUserCode/NodeExecuteWhenRun" to="ControlDevUserCode/NodeDevUserCodeToNode" method="print_current_code_loaded"]
-[connection signal="on_new_node_created" from="ControlDevUserCode/NodeDevUserCodeToNode" to="ControlDevUserCode/InterfaceToModNode" method="set_node_to_affect"]
-[connection signal="on_source_pushed" from="ControlDevUserCode/MicroBitTurnExistingScriptToTextEmit" to="ControlDevUserCode/CodeEditDeveloper" method="set_text"]
-[connection signal="toggled" from="ControlDevUserCode/CheckButtonA" to="ControlDevUserCode/InterfaceToModNode" method="set_button_a_state"]
-[connection signal="toggled" from="ControlDevUserCode/CheckButtonB" to="ControlDevUserCode/InterfaceToModNode" method="set_button_b_state"]
-[connection signal="button_down" from="ControlDevUserCode/Button2" to="ControlDevUserCode/InterfaceToModNode" method="set_leds_percent_with_random_5x5"]
+[connection signal="button_down" from="ControlDevUserCode/Button" to="ControlDevUserCode/MicroBitCodeEditorToModdableNode" method="try_to_execute_code"]
