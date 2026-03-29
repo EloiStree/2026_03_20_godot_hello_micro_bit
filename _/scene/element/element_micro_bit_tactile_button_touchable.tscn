@@ -75,6 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26049805, 0)
 shape = SubResource("BoxShape3D_3w8vi")
 
 [connection signal="on_down" from="." to="NodeScriptAnimation" method="set_as_pressing"]
+[connection signal="on_ui_pressing_update" from="." to="NodeScriptAnimation" method="set_pressing_state"]
 [connection signal="on_up" from="." to="NodeScriptAnimation" method="set_as_released"]
 [connection signal="on_down" from="Area3DTactileButton" to="." method="set_as_pressing"]
 [connection signal="on_up" from="Area3DTactileButton" to="." method="set_as_released"]

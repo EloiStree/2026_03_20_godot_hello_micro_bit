@@ -166,7 +166,7 @@ func display_turn_all_leds_off():
 
 
 
-func display_set_all_leds_with_array_of_float(given_array:Array[float]):
+func display_set_all_leds_with_array_of_percent_0_1(given_array:Array[float]):
 	display_clear()
 	var index:int =0
 	for float_in_array in given_array:

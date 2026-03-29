@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://twxqaagw0qu2"]
 
 [ext_resource type="PackedScene" uid="uid://fexrpchd24fg" path="res://_/scene/element/micro_bit_as_quad_image_1x1x1.tscn" id="1_phth7"]
+[ext_resource type="Script" uid="uid://qmbpk55orxkl" path="res://_/script/core/micro_bit_set_get_listen_to_data_state_only.gd" id="1_tpux2"]
+[ext_resource type="Resource" uid="uid://bv4gmn2ce7sv6" path="res://_/resource/micro_bit_resource_singleton.tres" id="2_tpux2"]
 [ext_resource type="PackedScene" uid="uid://mk87fwj3xx7h" path="res://_/scene/element/element_micro_bit_tactile_button_touchable.tscn" id="2_twatn"]
 [ext_resource type="PackedScene" uid="uid://skeqkgsk85j8" path="res://_/scene/element/element_array_matrix_leds_5x5.tscn" id="3_tpux2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_585vc"]
 
 [node name="MicroBitWithCodeQuadFacade" type="Node3D" unique_id=1913523682]
+
+[node name="MicroBitModelState" type="Node" parent="." unique_id=1999557122]
+script = ExtResource("1_tpux2")
+state = ExtResource("2_tpux2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1809260976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.01, 0, 0.5, 0)
@@ -23,9 +29,6 @@ transform = Transform3D(0.111, 0, 0, 0, -4.851964e-09, -0.111, 0, 0.111, -4.8519
 
 [node name="MicroBitTactileButtonTouchableReset" parent="." unique_id=1295743184 instance=ExtResource("2_twatn")]
 transform = Transform3D(0.110999994, 0, 0, 0, -4.8519646e-09, 0.110999994, 0, -0.110999994, -4.8519646e-09, -0.188, 0.739, -0.001)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=663194089]
-transform = Transform3D(1, 0, 0, 0, 0.8518824, 0.52373314, 0, -0.52373314, 0.8518824, 0, 1.4886788, 1.8383765)
 
 [node name="ArrayMatrixLeds5x5" parent="." unique_id=264011407 instance=ExtResource("3_tpux2")]
 transform = Transform3D(0.04, 0, 0, 0, -1.7484555e-09, -0.04, 0, 0.04, -1.7484555e-09, -0.15664157, 0.54585475, 3.6853416e-11)
@@ -130,7 +133,15 @@ metadata/_edit_group_ = true
 transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435083, 7.7289405)
 metadata/_edit_group_ = true
 
-[connection signal="on_down" from="MicroBitTactileButtonTouchableA" to="ArrayMatrixLeds5x5" method="display_turn_all_leds_on"]
-[connection signal="on_down" from="MicroBitTactileButtonTouchableB" to="ArrayMatrixLeds5x5" method="display_set_all_leds_as_random"]
+[connection signal="on_array_leds_updated" from="MicroBitModelState" to="ArrayMatrixLeds5x5" method="display_set_all_leds_with_array_of_percent_0_1"]
+[connection signal="on_button_a_updated" from="MicroBitModelState" to="MicroBitTactileButtonTouchableA" method="override_pressing_value_and_ui_state"]
+[connection signal="on_button_b_updated" from="MicroBitModelState" to="MicroBitTactileButtonTouchableB" method="override_pressing_value_and_ui_state"]
+[connection signal="on_button_reset_updated" from="MicroBitModelState" to="MicroBitTactileButtonTouchableReset" method="override_pressing_value_and_ui_state"]
+[connection signal="on_pressing_updated" from="MicroBitTactileButtonTouchableA" to="MicroBitModelState" method="set_button_a"]
+[connection signal="on_pressing_updated" from="MicroBitTactileButtonTouchableB" to="MicroBitModelState" method="set_button_b"]
+[connection signal="on_pressing_updated" from="MicroBitTactileButtonTouchableReset" to="MicroBitModelState" method="set_button_reset"]
 
+[editable path="MicroBitTactileButtonTouchableA"]
+[editable path="MicroBitTactileButtonTouchableB"]
+[editable path="MicroBitTactileButtonTouchableReset"]
 [editable path="ArrayMatrixLeds5x5"]

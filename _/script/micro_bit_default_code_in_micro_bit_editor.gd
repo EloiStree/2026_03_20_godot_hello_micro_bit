@@ -1,6 +1,26 @@
 ## NEED TO BE TESTING 
 extends Node
 
+func _ready() -> void:
+	print("Hello Micro:Bit")
+
+
+func mod_in_set_button_a(value:bool):
+	print("Button A:",value)
+	#print(",".join(leds_percent_5x5))
+	mod_out_on_request_image_command.emit("9999 90009  90009 90009 99999")
+	
+	
+func mod_in_set_button_b(value:bool):
+	print("Button B:",value)
+	mod_out_on_request_image_command.emit("01234567890123456789012345678900")
+	
+func mod_in_set_button_reset(value:bool):
+	print("Button Reset:",value)
+	mod_out_on_request_image_command.emit("0000000000000000000000000")
+	
+##################################################
+
 ## REQUEST AN ACTION PROVIDED BY THE DEVELOPER
 signal mod_out_on_request_text_command(text_action:String)
 ## REQUEST AN ACTION PROVIDED BY THE DEVELOPER WITH AN INTEGER TO REGISTER IT
@@ -120,31 +140,3 @@ const MAX_PINS := 20
 
 const PIN_RESERVED_LED_SCREEN := [3, 4, 6, 7, 9, 10]
 const PIN_RESERVED_BUTTON := [5, 11]
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	print("Hello Micro:Bit")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func mod_in_set_button_a(value:bool):
-	print("Button A:",value)
-	print(",".join(leds_percent_5x5))
-	mod_out_on_request_text_command.emit("I like potato")
-	mod_out_on_request_image_command.emit("9999 90009  90009 90009 99999")
-	# Nice
-	
-func mod_in_set_button_b(value:bool):
-	print("Button B:",value)
-	mod_out_on_request_image_command.emit("01234567890123456789012345678900")
-	
-func mod_in_set_button_reset(value:bool):
-	mod_out_on_request_int_command.emit(42)
-	mod_out_on_request_image_command.emit("0000000000000000000000000")
-	

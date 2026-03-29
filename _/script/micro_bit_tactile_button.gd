@@ -5,6 +5,7 @@ extends Node
 
 signal on_pressing_updated(is_pressing:bool)
 signal on_pressing_changed(is_pressing:bool)
+signal on_ui_pressing_update(is_pressing:bool)
 signal on_down()
 signal on_up()
 
@@ -43,6 +44,10 @@ func set_as_pressing():
 	
 func set_as_released():
 	set_pressing_value(false)
+
+func override_pressing_value_and_ui_state(is_pressing:bool):
+	pressing_state = is_pressing
+	on_ui_pressing_update.emit(is_pressing)
 	
 func set_pressing_value(is_pressing:bool):
 	var changed:bool = pressing_state !=is_pressing
@@ -55,4 +60,5 @@ func set_pressing_value(is_pressing:bool):
 			on_up.emit()
 		on_pressing_changed.emit(is_pressing)
 	on_pressing_updated.emit(is_pressing)
+	on_ui_pressing_update.emit(is_pressing)
 	
