@@ -2,13 +2,16 @@ class_name MicroBitCodeEditorToModdableNode
 extends Node
 
 
+## When it is created. Our future code will need to know what node existe
+
+signal on_created_node_with_code(node_created:Node)
 
 @export var code_editor_to_read_from:CodeEdit
 #we want to make the life of the designer easy.
 @export var code_to_load_at_ready:Script
-
 @export var execute_at_ready:bool =false
-
+@export var unique_code_file_name:String ="code_file_name_change_me.gd"
+@export var created_node_holding_code:Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,12 +23,7 @@ func _ready() -> void:
 	if execute_at_ready:
 		try_to_execute_code()
 
-@export var unique_code_file_name:String ="code_file_name_change_me.gd"
-@export var created_node_holding_code:Node
 
-## When it is created. Our future code will need to know what node existe
-
-signal on_created_node_with_code(node_created:Node)
 
 
 func try_to_execute_code() -> void:
@@ -61,7 +59,6 @@ func try_to_execute_code() -> void:
 	if not script is GDScript:
 		push_error("Hum that not a Godot Script")
 		return 
-	print("We are here")	
 	
 	## We created and loaded a script in our application.
 	## now we need to use it

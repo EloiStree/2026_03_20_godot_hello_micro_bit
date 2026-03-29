@@ -2,18 +2,19 @@
 
 [ext_resource type="Script" uid="uid://xo4osry84raa" path="res://_/script/micro_bit_code_editor_to_moddable_node.gd" id="1_ik5qv"]
 [ext_resource type="Script" uid="uid://bjx4u2se4vs2n" path="res://_/script/micro_bit_default_code_in_micro_bit_editor.gd" id="2_mj7hm"]
-[ext_resource type="PackedScene" uid="uid://twxqaagw0qu2" path="res://_/scene/core/micro_bit_with_code_quad_facade.tscn" id="3_mj7hm"]
+[ext_resource type="Script" uid="uid://d2akn1676l1hg" path="res://_/script/micro_bit_mod_node_connection.gd" id="3_3byqi"]
+[ext_resource type="PackedScene" uid="uid://fexrpchd24fg" path="res://_/scene/element/micro_bit_as_quad_image_1x1x1.tscn" id="4_wdncj"]
+[ext_resource type="PackedScene" uid="uid://mk87fwj3xx7h" path="res://_/scene/element/element_micro_bit_tactile_button_touchable.tscn" id="5_cvw88"]
+[ext_resource type="PackedScene" uid="uid://skeqkgsk85j8" path="res://_/scene/element/element_array_matrix_leds_5x5.tscn" id="6_gkv1c"]
 
-[node name="DemoMicroBitLoadRunningScriptAsNode" type="Control" unique_id=867692435]
+[sub_resource type="BoxMesh" id="BoxMesh_585vc"]
+
+[node name="DemoMicroBitLoadRunningScriptAsNode" type="Node3D" unique_id=142767019]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1939730770]
+
+[node name="ControlDevUserCode" type="Control" parent="CanvasLayer" unique_id=842759537]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ControlDevUserCode" type="Control" parent="." unique_id=842759537]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,26 +22,27 @@ offset_right = -2.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="CodeEdit" type="CodeEdit" parent="ControlDevUserCode" unique_id=1085005879]
+[node name="CodeEdit" type="CodeEdit" parent="CanvasLayer/ControlDevUserCode" unique_id=1085005879]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.98800004
+anchor_right = 0.49
 anchor_bottom = 1.0
-offset_right = -0.20007324
+offset_right = -0.5
 offset_bottom = -5.0
 text = "# Here we are going to add some code.
 extends Node
 func _ready()->void:
 	print(\"Hello Mod\")"
 
-[node name="MicroBitCodeEditorToModdableNode" type="Node" parent="ControlDevUserCode" unique_id=111486366 node_paths=PackedStringArray("code_editor_to_read_from")]
+[node name="MicroBitCodeEditorToModdableNode" type="Node" parent="CanvasLayer/ControlDevUserCode" unique_id=111486366 node_paths=PackedStringArray("code_editor_to_read_from")]
 script = ExtResource("1_ik5qv")
 code_editor_to_read_from = NodePath("../CodeEdit")
 code_to_load_at_ready = ExtResource("2_mj7hm")
 metadata/_custom_type_script = "uid://xo4osry84raa"
 
-[node name="Button" type="Button" parent="ControlDevUserCode" unique_id=1811422029]
+[node name="Button" type="Button" parent="CanvasLayer/ControlDevUserCode" unique_id=1811422029]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.777
@@ -55,9 +57,362 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Reload Script"
 
-[node name="MicroBitWithCodeQuadFacade" parent="." unique_id=1913523682 instance=ExtResource("3_mj7hm")]
+[node name="MicroBitModNodeConnection" type="Node" parent="CanvasLayer/ControlDevUserCode" unique_id=1425152309]
+script = ExtResource("3_3byqi")
+metadata/_custom_type_script = "uid://d2akn1676l1hg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ControlDevUserCode" unique_id=1799749181]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.669
+anchor_bottom = 1.005
+offset_left = -1.0
+offset_right = -0.35003662
+offset_bottom = -0.22998047
+
+[node name="CheckButtonA" type="CheckButton" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1360352918]
+layout_mode = 2
+text = "A"
+
+[node name="CheckButtonB" type="CheckButton" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=720648729]
+layout_mode = 2
+text = "B"
+
+[node name="CheckButtonReset" type="CheckButton" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1971871289]
+layout_mode = 2
+text = "Reset"
+
+[node name="CheckButtonPin0" type="CheckButton" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1539590759]
+layout_mode = 2
+text = "Pin 0"
+
+[node name="CheckButtonPin1" type="CheckButton" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1861372156]
+layout_mode = 2
+text = "Pin 1"
+
+[node name="CheckButtonPin2" type="CheckButton" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=525603653]
+layout_mode = 2
+text = "Pin 2"
+
+[node name="CheckButtonPinLogo" type="CheckButton" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1976623158]
+layout_mode = 2
+text = "Pin Logo"
+
+[node name="LabelRequestTextAction" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1047320938]
+layout_mode = 2
+text = "Text action"
+
+[node name="LabelRequestImageStringAction" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1253134167]
+layout_mode = 2
+text = "Image Action"
+
+[node name="LabelRequestIntegerAction" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1875045073]
+visible = false
+layout_mode = 2
+text = "Int Action"
+
+[node name="Control" type="Control" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1859885636]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control" unique_id=141401294]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 11
+text = "Light 0 255"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control" unique_id=272153129]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 15.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 255.0
+
+[node name="Control2" type="Control" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=2135148243]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control2" unique_id=1621232531]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 11
+text = "Temperature -5 50"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control2" unique_id=1978661780]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 15.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = -5.0
+max_value = 50.0
+step = 0.02
+
+[node name="Control3" type="Control" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=514812147]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control3" unique_id=1231032728]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 11
+text = "Compass 0 360"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control3" unique_id=802993241]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 15.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 360.0
+step = 0.02
+value = 0.04
+
+[node name="Control4" type="Control" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=1201275046]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control4" unique_id=36446894]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 11
+text = "Microphone 0 255  (75 150)"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control4" unique_id=273182648]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 15.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 255.0
+
+[node name="Control6" type="Control" parent="CanvasLayer/ControlDevUserCode/VBoxContainer" unique_id=58000330]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control6" unique_id=742481697]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 11
+text = "Accelerometer XYZ -2000 2000 mg
+X -Left 900 +Right 900
+Y -Front 900 +Top 900"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control6" unique_id=1541977957]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.19900002
+anchor_right = 1.005
+anchor_bottom = 0.89000005
+offset_top = -0.9000015
+offset_right = 0.024993896
+
+[node name="HSlider X" type="HSlider" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control6/VBoxContainer" unique_id=2127078649]
+layout_mode = 2
+min_value = -2000.0
+max_value = 2000.0
+step = 0.1
+
+[node name="HSlider Y" type="HSlider" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control6/VBoxContainer" unique_id=470967141]
+layout_mode = 2
+min_value = -2000.0
+max_value = 2000.0
+step = 0.1
+
+[node name="HSlider Z" type="HSlider" parent="CanvasLayer/ControlDevUserCode/VBoxContainer/Control6/VBoxContainer" unique_id=309962414]
+layout_mode = 2
+min_value = -2000.0
+max_value = 2000.0
+step = 0.1
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=619324000]
+anchors_preset = -1
+anchor_left = 0.874
+anchor_top = 0.18100001
+anchor_right = 0.97900003
+anchor_bottom = 0.33100003
+offset_left = -2.8480225
+offset_top = -1.2880096
+offset_right = -3.8079834
+offset_bottom = -20.488022
+text = "Push
+Random Array"
+
+[node name="MicroBitWithCodeQuadFacade" type="Node3D" parent="." unique_id=1913523682]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MicroBitWithCodeQuadFacade" unique_id=1809260976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.01, 0, 0.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_585vc")
+
+[node name="MicroBitAsQuadImage1x1x1" parent="MicroBitWithCodeQuadFacade" unique_id=1127973766 instance=ExtResource("4_wdncj")]
+
+[node name="MicroBitTactileButtonTouchableA" parent="MicroBitWithCodeQuadFacade" unique_id=422241058 instance=ExtResource("5_cvw88")]
+transform = Transform3D(0.111, 0, 0, 0, -4.851964e-09, -0.111, 0, 0.111, -4.851964e-09, -0.3899969, 0.4055544, 0.001)
+
+[node name="MicroBitTactileButtonTouchableB" parent="MicroBitWithCodeQuadFacade" unique_id=247432886 instance=ExtResource("5_cvw88")]
+transform = Transform3D(0.111, 0, 0, 0, -4.851964e-09, -0.111, 0, 0.111, -4.851964e-09, 0.4018606, 0.4055544, 0.001)
+
+[node name="MicroBitTactileButtonTouchableReset" parent="MicroBitWithCodeQuadFacade" unique_id=1295743184 instance=ExtResource("5_cvw88")]
+transform = Transform3D(0.110999994, 0, 0, 0, -4.8519646e-09, 0.110999994, 0, -0.110999994, -4.8519646e-09, -0.188, 0.739, -0.001)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MicroBitWithCodeQuadFacade" unique_id=663194089]
+transform = Transform3D(1, 0, 0, 0, 0.8518824, 0.52373314, 0, -0.52373314, 0.8518824, 0, 1.4886788, 1.8383765)
+
+[node name="ArrayMatrixLeds5x5" parent="MicroBitWithCodeQuadFacade" unique_id=264011407 instance=ExtResource("6_gkv1c")]
+transform = Transform3D(0.04, 0, 0, 0, -1.7484555e-09, -0.04, 0, 0.04, -1.7484555e-09, -0.15664157, 0.54585475, 3.6853416e-11)
+
+[node name="MicroBitChangeLedColorWithSignal0" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="0" unique_id=1178328725]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal1" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="1" unique_id=2067872458]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal2" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="2" unique_id=1685145665]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal3" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="3" unique_id=1053728905]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal4" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="4" unique_id=1229314278]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.104350515, 0.018071175)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal5" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="5" unique_id=1140805726]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal6" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="6" unique_id=1601200306]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal7" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="7" unique_id=456733917]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal8" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="8" unique_id=299746147]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal9" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="9" unique_id=49642877]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435061, 1.9638586)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal10" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="10" unique_id=494722967]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal11" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="11" unique_id=954347130]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal12" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="12" unique_id=658478585]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal13" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="13" unique_id=1052252400]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal14" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="14" unique_id=2129399830]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435066, 3.8735046)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal15" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="15" unique_id=2073204555]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal16" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="16" unique_id=994947806]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal17" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="17" unique_id=919020732]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal18" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="18" unique_id=35497086]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal19" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="19" unique_id=136014421]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435073, 5.801222)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal20" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="20" unique_id=1728651326]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 0.03663659, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal21" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="21" unique_id=1906945690]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 2.0012364, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal22" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="22" unique_id=194829584]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 3.9658368, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal23" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="23" unique_id=1223467047]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 5.930436, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
+
+[node name="MicroBitChangeLedColorWithSignal24" parent="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" index="24" unique_id=2071858286]
+transform = Transform3D(0.37176198, 0, 0, 0, 0.19060563, -3.5527137e-15, 0, 6.217249e-15, 0.57602805, 7.8950367, 0.10435083, 7.7289405)
+metadata/_edit_group_ = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1206520464]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6059599)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01701, 0.58422923, 1.3214152)
+current = true
 
-[connection signal="button_down" from="ControlDevUserCode/Button" to="ControlDevUserCode/MicroBitCodeEditorToModdableNode" method="try_to_execute_code"]
+[connection signal="on_created_node_with_code" from="CanvasLayer/ControlDevUserCode/MicroBitCodeEditorToModdableNode" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="set_node_to_affect"]
+[connection signal="button_down" from="CanvasLayer/ControlDevUserCode/Button" to="CanvasLayer/ControlDevUserCode/MicroBitCodeEditorToModdableNode" method="try_to_execute_code"]
+[connection signal="mod_out_requested_image_command" from="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" to="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" method="display_set_all_leds_with_text_image"]
+[connection signal="mod_out_requested_image_command" from="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" to="CanvasLayer/ControlDevUserCode/VBoxContainer/LabelRequestImageStringAction" method="set_text"]
+[connection signal="mod_out_requested_text_command" from="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" to="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" method="display_set_all_leds_to_0_9_char"]
+[connection signal="mod_out_requested_text_command" from="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" to="CanvasLayer/ControlDevUserCode/VBoxContainer/LabelRequestTextAction" method="set_text"]
+[connection signal="toggled" from="CanvasLayer/ControlDevUserCode/VBoxContainer/CheckButtonA" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_a"]
+[connection signal="toggled" from="CanvasLayer/ControlDevUserCode/VBoxContainer/CheckButtonB" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_b"]
+[connection signal="toggled" from="CanvasLayer/ControlDevUserCode/VBoxContainer/CheckButtonReset" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_reset"]
+[connection signal="toggled" from="CanvasLayer/ControlDevUserCode/VBoxContainer/CheckButtonPin0" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_reset"]
+[connection signal="toggled" from="CanvasLayer/ControlDevUserCode/VBoxContainer/CheckButtonPin1" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_reset"]
+[connection signal="toggled" from="CanvasLayer/ControlDevUserCode/VBoxContainer/CheckButtonPin2" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_reset"]
+[connection signal="toggled" from="CanvasLayer/ControlDevUserCode/VBoxContainer/CheckButtonPinLogo" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_reset"]
+[connection signal="button_down" from="CanvasLayer/Button" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_leds_with_random_array"]
+[connection signal="on_pressing_updated" from="MicroBitWithCodeQuadFacade/MicroBitTactileButtonTouchableA" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_a"]
+[connection signal="on_down" from="MicroBitWithCodeQuadFacade/MicroBitTactileButtonTouchableB" to="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" method="display_set_all_leds_as_random"]
+[connection signal="on_pressing_updated" from="MicroBitWithCodeQuadFacade/MicroBitTactileButtonTouchableB" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_b"]
+[connection signal="on_pressing_updated" from="MicroBitWithCodeQuadFacade/MicroBitTactileButtonTouchableReset" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_button_reset"]
+[connection signal="on_debug_refresh_array_as_percent_array" from="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5" to="CanvasLayer/ControlDevUserCode/MicroBitModNodeConnection" method="mod_in_set_and_affect_leds_array_5x5_percent"]
+
+[editable path="MicroBitWithCodeQuadFacade/ArrayMatrixLeds5x5"]

@@ -65,7 +65,7 @@ func _ready() -> void:
 		var timer = Timer.new()
 		timer.wait_time = second_between_debug_refresh
 		timer.autostart = true
-		timer.timeout.connect(refresh_debug_arrray_state)
+		timer.timeout.connect(refresh_debug_array_state)
 		add_child(timer)
 	#testing_around()
 
@@ -247,7 +247,9 @@ func display_set_1d_led_to_0_9_int(index:int,value_0_9:int) :
 func display_set_1d_led_to_0_9_char(index:int,value_0_9:String) :
 	if is_valide_1d_index(index):
 		array_of_leds[index].set_color_red_with_0_to_9_char(value_0_9)
-		
+
+
+
 		
 func display_set_all_leds_as_random():
 	for i in range(MAX_LED_COUNT):
@@ -286,11 +288,15 @@ func display_get_array_1d_state_as_string_of_0_9(with_return_line:bool =true)-> 
 	return "".join(result_list)
 
 
+signal on_debug_refresh_array_as_image_0_9(text:String)
+signal on_debug_refresh_array_as_percent_array(array_5x5:Array[float])
 
-func refresh_debug_arrray_state():
+func refresh_debug_array_state():
 	for_the_demo_image = display_get_array_1d_state_as_string_of_0_9()
 	for_the_demo_percent =  display_get_array_1d_state_as_percent()
 	for_the_demo_int = display_get_array_1d_state_as_int_0_9()
+	on_debug_refresh_array_as_image_0_9.emit(for_the_demo_image)
+	on_debug_refresh_array_as_percent_array.emit(for_the_demo_percent)
 	pass
 
 
