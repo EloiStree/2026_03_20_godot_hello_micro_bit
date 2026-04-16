@@ -19,3 +19,6 @@
 [submodule "addons/2025_10_19_gdp_kid_toy_skid_steering"]
 	path = addons/2025_10_19_gdp_kid_toy_skid_steering
 	url = https://github.com/EloiStree/2025_10_19_gdp_kid_toy_skid_steering.git
+[submodule "addons/2026_04_16_gdps_learn_bit_and_code"]
+	path = addons/2026_04_16_gdps_learn_bit_and_code
+	url = https://github.com/EloiStree/2026_04_16_gdps_learn_bit_and_code.git
