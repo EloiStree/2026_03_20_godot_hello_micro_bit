@@ -1,0 +1,21 @@
+[submodule "addons/2026_03_20_gdp_hello_micro_bit"]
+	path = addons/2026_03_20_gdp_hello_micro_bit
+	url = https://github.com/EloiStree/2026_03_20_gdp_hello_micro_bit.git
+[submodule "addons/2026_04_11_gdp_pins"]
+	path = addons/2026_04_11_gdp_pins
+	url = https://github.com/EloiStree/2026_04_11_gdp_pins.git
+[submodule "addons/2026_04_11_gdp_learn_with_sensors"]
+	path = addons/2026_04_11_gdp_learn_with_sensors
+	url = https://github.com/EloiStree/2026_04_11_gdp_learn_with_sensors.git
+[submodule "addons/2026_04_12_gdp_vibed_laser_cut_shader"]
+	path = addons/2026_04_12_gdp_vibed_laser_cut_shader
+	url = https://github.com/EloiStree/2026_04_12_gdp_vibed_laser_cut_shader.git
+[submodule "addons/2026_04_12_gdp_nerf_dart"]
+	path = addons/2026_04_12_gdp_nerf_dart
+	url = https://github.com/EloiStree/2026_04_12_gdp_nerf_dart.git
+[submodule "addons/2024_10_16_gdp_blocks_color"]
+	path = addons/2024_10_16_gdp_blocks_color
+	url = https://github.com/EloiStree/2024_10_16_gdp_blocks_color.git
+[submodule "addons/2025_10_19_gdp_kid_toy_skid_steering"]
+	path = addons/2025_10_19_gdp_kid_toy_skid_steering
+	url = https://github.com/EloiStree/2025_10_19_gdp_kid_toy_skid_steering.git
