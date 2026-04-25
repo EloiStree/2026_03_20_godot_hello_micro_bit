@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="2026_03_20_godot_hello_micro_bit"
-run/main_scene="uid://ciic7fjxsubpo"
+run/main_scene="uid://dmi0wbdejc6tr"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
